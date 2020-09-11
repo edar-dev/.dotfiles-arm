@@ -1,0 +1,55 @@
+#How to install the os on the system
+-keep in mind that the first boot device is the micro sd
+-use PINE64 installer as flash tool
+
+##How to install the system direclty on the microSD 
+-you can install the os directly on the microSD, for example if you want to test a new os without losing the original one,
+or you can install different os on different microSD so you can easily switch between them.
+-Once installed keep in  mind that the loading time can be really slow.
+-In order to install direcly on the microSD you can easyly download the desired image (for the right architecture and machine specs)
+and then flash on the microSD using the PINE64 installer tool.
+-Once flashed you can put the microSD in the PBP and follow the wizard to install it.
+-If the system look stuck for a really long time you can press ESC key. Sometimes there is an issue and the screen does not refresh automatically.
+-And then it's done!
+
+##How to install the system using the microSD to EMMC way
+-This is a little more triky.
+-You can't just direct copy the system from the microSd to the EMMC.
+-You still need to flash the os on the microSD but you need a special version of the OS
+-For manjaro you need to download the EMMC version
+-You can go on manjaro website, downloads, arm version, choose the version (like PBP i3),download, you got redirected to a new page,
+here copy the link of the download button, paste in the address bar, remove the file name at the end.
+-Find the right version, not all the version has a emmc image already builde,so find a version that have it.
+-Download the EMMC image.
+-Using PINE64 flash the image on the microSD.
+-Put the microSD in the PBP, turn it on.
+-After a while a wizard should start (if not press ESC because sometimes the refresh got stuck)
+-Follow the wizard.
+-When asked remove the microSD and power the PBP again
+
+
+#How to update Manjaro OS
+-From a terminal run 
+pacman -Syu
+
+-sometimes there are special manual operation. you can find the list on the archlinux website.
+for example:
+pacman -Syu --overwrite /usr/lib\*/p11-kit-trust.so
+
+
+#How to store dotfiles
+Here is the atlassian version: www.atlassian.com/git/tutorials/dotfiles
+And here a summary of the commands that you need to run
+
+git init --bare $HOME/.cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
+echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
+
+-and then set the remote origin
+config remote add origin https://github.com/your/repo/path
+
+
+
+#TODO
+-How to build an image manually for the emmc version
