@@ -49,7 +49,11 @@ echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $H
 -and then set the remote origin
 config remote add origin https://github.com/your/repo/path
 
+#Install yay
+-If needed install base devel
+sudo pacman -S base-devel
 
-
-#TODO
+-install yay
+git clone https://aur.archlinux.org/yay.g
 -How to build an image manually for the emmc version
+-SSH key
