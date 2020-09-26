@@ -1,3 +1,44 @@
+
+
+"        _                    
+" __   _(_)_ __ ___  _ __ ___ 
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__ 
+" (_)_/ |_|_| |_| |_|_|  \___|
+"01100101 01100100 01100001 01110010 
+
+"************************************************************
+""{{{ Import files
+"************************************************************
+
+source ~/.config/nvim/plug-config/startify.vim
+
+"************************************************************
+""}}}
+"************************************************************
+
+"************************************************************
+""{{{ Plugin
+"************************************************************
+
+call plug#begin()
+
+Plug 'mhinz/vim-startify'
+
+
+" Cool Icons
+Plug 'ryanoasis/vim-devicons'
+
+call plug#end()
+
+"************************************************************
+""}}}
+"************************************************************
+                             
+"************************************************************
+""{{{ Basic setup
+"************************************************************
+
 " Don't try to be vi compatible
 set nocompatible
 
@@ -25,7 +66,7 @@ set number
 set ruler
 
 " Blink cursor on error instead of beeping (grr)
-set visualbell
+" set visualbell
 
 " Encoding
 set encoding=utf-8
@@ -39,6 +80,9 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set noshiftround
+
+" Window
+set showtabline=2
 
 " Cursor motion
 set scrolloff=3
@@ -98,3 +142,7 @@ let g:solarized_termtrans=1
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.vim/colors/ and uncomment:
 " colorscheme solarized
+
+"************************************************************
+""}}}
+"************************************************************

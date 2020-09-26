@@ -4,6 +4,8 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 
+set $terminal PAN_MESA_DEBUG=gl3 kitty
+
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
@@ -27,18 +29,15 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+ShiftReturn exec sterminal
+bindsym $mod+Shift+Return exec sterminal
 
-bindsym $mod+Return exec PAN_MESA_DEBUG=gl3 kitty
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id dmenu_recency
-
-# launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
 
 exec --no-startup-id pulseaudio
 exec --no-startup-id volumeicon
@@ -51,12 +50,10 @@ bindsym $mod+p exec --no-startup-id "light -A 10; notify-send 'brightness up'"
 bindsym $mod+o exec --no-startup-id "light -U 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec terminal -e 'mocp'
+bindsym $mod+F3 exec $terminal -e ranger
+bindsym $mod+Mod4+F3 exec pcmanfm
+bindsym $mod+F5 exec $terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
