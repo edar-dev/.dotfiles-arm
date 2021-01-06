@@ -1,5 +1,3 @@
-
-
 "        _                    
 " __   _(_)_ __ ___  _ __ ___ 
 " \ \ / / | '_ ` _ \| '__/ __|
@@ -7,15 +5,11 @@
 " (_)_/ |_|_| |_| |_|_|  \___|
 "01100101 01100100 01100001 01110010 
 
-"************************************************************
-""{{{ Import files
-"************************************************************
-
 source ~/.config/nvim/plug-config/startify.vim
-
-"************************************************************
-""}}}
-"************************************************************
+source ~/.config/nvim/plug-config/coc.vim
+source ~/.config/nvim/plug-config/fzf.vim
+source ~/.config/nvim/plug-config/markdown-preview.vim
+source ~/.config/nvim/plug-config/vim-polyglot.vim
 
 "************************************************************
 ""{{{ Plugin
@@ -23,11 +17,103 @@ source ~/.config/nvim/plug-config/startify.vim
 
 call plug#begin()
 
+" Theme
+Plug 'arcticicestudio/nord-vim'
+
+" True snippet and additional text editing support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" FZF {{{
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'antoinemadec/coc-fzf'
+"}}}
+
+" {{{ Git
+if executable('git')
+  " Plug 'airblade/vim-gitgutter'
+  Plug 'stsewd/fzf-checkout.vim'
+  " https://gist.github.com/voitd/60f606b02724dbb863ed09e7f5679b43
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  " Git commit browser.
+  Plug 'junegunn/gv.vim'
+  " reveal the hidden message from Git under the cursor quickly
+  Plug 'rhysd/git-messenger.vim'
+endif
+" }}} 
+
+Plug 'preservim/nerdtree'
+
+" Fancy start screen
 Plug 'mhinz/vim-startify'
 
+" See what keys do like in emacs
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 " Cool Icons
 Plug 'ryanoasis/vim-devicons'
+
+" Rainbow Parentheses Improved
+Plug 'frazrepo/vim-rainbow'
+
+" displaying thin vertical lines at each indentation level for code indented with spaces
+Plug 'Yggdroot/indentLine'
+
+" Terminal
+Plug 'voldikss/vim-floaterm'
+
+" Closetags
+Plug 'alvan/vim-closetag'
+
+"Auto close parentheses and repeat by dot dot dot...
+Plug 'cohama/lexima.vim'
+
+" Surround
+Plug 'machakann/vim-sandwich'
+
+" Auto commentary [gcc]
+Plug 'tpope/vim-commentary'
+
+" Auto change html tags
+Plug 'AndrewRadev/tagalong.vim'
+
+" View and search LSP symbols, tags
+Plug 'liuchengxu/vista.vim'
+
+" Live server
+Plug 'turbio/bracey.vim'
+
+" Highlight conflict markers.[x and ]x
+" command ct for themselves, co for ourselves, cn for none and cb for both
+Plug 'rhysd/conflict-marker.vim'
+
+"Yank something that you want to console.log into your register and then run :Consolate
+Plug 'agarrharr/consolation-vim'
+
+" Emmet snippets
+Plug 'mattn/emmet-vim'
+
+" Undo time travel
+Plug 'mbbill/undotree'
+
+" Rooter changes the working directory to the project root when you open a file or directory.
+Plug 'airblade/vim-rooter'
+
+" Motion | replaced by coc-smartf
+Plug 'justinmk/vim-sneak'
+
+" How long vim starts
+Plug 'dstein64/vim-startuptime'
+
+" Better Syntax Support
+Plug 'sheerun/vim-polyglot'
+
+" Markdown Preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
+
+" Highlight colors in buffer
+Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
 
@@ -66,7 +152,7 @@ set number
 set ruler
 
 " Blink cursor on error instead of beeping (grr)
-" set visualbell
+set visualbell
 
 " Encoding
 set encoding=utf-8
@@ -80,9 +166,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set noshiftround
-
-" Window
-set showtabline=2
 
 " Cursor motion
 set scrolloff=3
@@ -117,11 +200,6 @@ set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
 
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
 " Textmate holdouts
 
 " Formatting
@@ -134,15 +212,41 @@ set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" Color scheme (terminal)
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
-" colorscheme solarized
+"************************************************************
+""}}}
+"************************************************************
 
+"************************************************************
+""{{{ Plugin config
+"************************************************************
+" Theme
+colorscheme nord
+
+"************************************************************
+""}}}
+"************************************************************
+
+"************************************************************
+""{{{ Mapping
+"************************************************************
+
+nnoremap <silent><C-p> :call FzfOmniFiles()<CR>
+
+"************************************************************
+""}}}
+"************************************************************
+
+"************************************************************
+""{{{ Visual Settings
+"************************************************************
+hi! VertSplit guibg=NONE guifg=#001a24
+"************************************************************
+""}}}
+"************************************************************
+
+"************************************************************
+""{{{ Next Section
+"************************************************************
 "************************************************************
 ""}}}
 "************************************************************
